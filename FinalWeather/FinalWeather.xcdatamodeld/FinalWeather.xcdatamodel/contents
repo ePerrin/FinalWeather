@@ -1,4 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="City" representedClassName="City" syncable="YES">
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lat" optional="YES" attributeType="Double" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lon" optional="YES" attributeType="Double" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="timeWeathers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TimeWeather" inverseName="city" inverseEntity="TimeWeather" syncable="YES"/>
+    </entity>
+    <entity name="TimeWeather" representedClassName="TimeWeather" syncable="YES">
+        <attribute name="cloudiness" optional="YES" attributeType="Float" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="humidity" optional="YES" attributeType="Float" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="pressure" optional="YES" attributeType="Float" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sunrise" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sunset" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="temp" optional="YES" attributeType="Float" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="tempMax" optional="YES" attributeType="Float" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="tempMin" optional="YES" attributeType="Float" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="windDeg" optional="YES" attributeType="Float" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="windSpeed" optional="YES" attributeType="Float" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="city" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="timeWeathers" inverseEntity="City" syncable="YES"/>
+        <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" inverseName="timeWeathers" inverseEntity="Weather" syncable="YES"/>
+    </entity>
+    <entity name="Weather" representedClassName="Weather" syncable="YES">
+        <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="icon" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="iconName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="main" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="timeWeathers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TimeWeather" inverseName="weather" inverseEntity="TimeWeather" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="City" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="TimeWeather" positionX="106" positionY="-18" width="128" height="238"/>
+        <element name="Weather" positionX="286" positionY="-18" width="128" height="133"/>
+    </elements>
 </model>
