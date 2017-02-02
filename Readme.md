@@ -13,8 +13,8 @@ Some utilities like date formatter, Localizable string or image management about
 ### Controller Layer
 There is three differents storyboard:
 - LaunchScreen : called before app done launching.
-- Cities : first one call during app did finish launching. It's here that Lyon weather data is loaded. If I have some time, I could add others controllers in this storyboard to allow user adding it's own cities
-- Main : call automaticaly after Cities, if there is stored data about Lyon in core data. This data could be already stored, or obtain via API. These controllers are based on splitViewController, with access to menu (forecast) for iPad in portrait mode 
+- Cities : List of cities. Once a city is added, its current and forecast wheaters are stored in core data. A user can also remove a city here
+- Main : These controllers are based on splitViewController, and give access to all forecast and current weather for a specific city
 
 ## Demo
 - Clone the project in your local repository
