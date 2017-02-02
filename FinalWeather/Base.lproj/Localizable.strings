@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  FinalWeather
+
+  Created by Emeric Perrin on 01/02/2017.
+  Copyright © 2017 Emeric. All rights reserved.
+*/
+
+// MARK: TimeWeatherTableViewController
+
+NoDataTimeWeatherTVC = "NoData";

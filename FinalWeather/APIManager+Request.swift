@@ -11,7 +11,7 @@ import CoreData
 import SwiftyJSON
 
 extension APIManager {
-    func getCurrentWeather(forCityName name: String, inContext context: NSManagedObjectContext, success: @escaping ()->(), error: @escaping (NSError?) -> ()) {
+    func getCurrentWeather(forCityName name: String, inContext context: NSManagedObjectContext, success: @escaping (City)->(), error: @escaping (NSError?) -> ()) {
         
         _ = self.GET("\(API.pathCurrent)", parameters: [API.parameterCityName: name]
             , success: { session, result in
@@ -26,9 +26,9 @@ extension APIManager {
                     timeWeather?.weather = weather
                 }
                 
-                context.saveContext()
+                context.saveContextToPersistenceStore()
                 
-                success()
+                success(city)
                 
             }, failure: { session, errorP in
                 error(errorP)
@@ -52,7 +52,7 @@ extension APIManager {
                     }
                 }
                 
-                context.saveContext()
+                context.saveContextToPersistenceStore()
                 
                 success()
                 

@@ -56,6 +56,7 @@ class APIRequestTests: XCTestCase {
         // When
         APIManager.sharedInstance().getCurrentWeather(forCityName: self.cityName, inContext: context
             , success: {
+                city in
                 
                 // city tests
                 let cities = self.getCities(inContext: context)

@@ -16,6 +16,7 @@ import AFNetworking
 struct API {
     static let key = "d66fe97e862eb08a0a452cb25055c455"
     static let url = "http://api.openweathermap.org/data/2.5"
+    static let unitMetric = "metric"
     
     static let pathCurrent = "weather"
     static let pathForecast = "forecast"
@@ -23,6 +24,7 @@ struct API {
     
     static let parameterKey = "APPID"
     static let parameterCityName = "q"
+    static let parameterUnits = "units"
     
     static let resCity = "city"
     static let resId = "id"
@@ -88,6 +90,7 @@ class APIManager: NSObject {
         }
         
         parametersFinal[API.parameterKey] = API.key
+        parametersFinal[API.parameterUnits] = API.unitMetric
         
         // Request will be launched
         self.willRequestLaunched()

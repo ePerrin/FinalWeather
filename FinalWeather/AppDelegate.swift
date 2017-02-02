@@ -15,11 +15,8 @@ struct Project {
     static let name = "FinalWeather"
     static let access = "momd"
     static let bdd = Project.name + ".sqlite"
-    static let storyboad = "Main"
-    
-    static let UserDefaultsDeviceTokenKey = "deviceToken"
-    static let UserDefaultsGroupFriendsNotFirstTime = "groupFriendsNotFirstTime"
-    static let UserDefaultsAppNotFirstTime = "appNotFirstTime"
+    static let storyboadCities = "Cities"
+    static let storyboadMain = "Main"
 }
 
 // MARK: -
@@ -31,7 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Intantiate first controller
+        let citiesTVC = UIStoryboard(name: Project.storyboadCities, bundle: Bundle.main).instantiateInitialViewController() as! CitiesTableViewController
+        citiesTVC.context = self.mainManagedObjectContext
+        
+        self.window!.rootViewController = citiesTVC
+        
         return true
     }
 
@@ -56,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        self.mainManagedObjectContext.saveContext()
+        self.mainManagedObjectContext.saveContextToPersistenceStore()
     }
 
     // MARK: - Core Data stack

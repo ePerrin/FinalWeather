@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QwJ-5E-DAQ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Cities Table View Controller-->
+        <scene sceneID="ENQ-8B-w8L">
+            <objects>
+                <viewController id="QwJ-5E-DAQ" customClass="CitiesTableViewController" customModule="FinalWeather" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uPd-Y1-UkX"/>
+                        <viewControllerLayoutGuide type="bottom" id="GYr-TN-hw1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nFh-X9-vLk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rGu-df-wEy">
+                                <rect key="frame" x="169.5" y="315" width="37" height="37"/>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Lyon Data" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3EZ-7t-pGN">
+                                <rect key="frame" x="117" y="362" width="141.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3EZ-7t-pGN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nFh-X9-vLk" secondAttribute="leadingMargin" constant="10" id="87h-kn-Kcr"/>
+                            <constraint firstItem="3EZ-7t-pGN" firstAttribute="top" secondItem="rGu-df-wEy" secondAttribute="bottom" constant="10" id="QSm-Ru-pb6"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3EZ-7t-pGN" secondAttribute="trailing" constant="10" id="fq5-hn-H2y"/>
+                            <constraint firstItem="rGu-df-wEy" firstAttribute="centerY" secondItem="nFh-X9-vLk" secondAttribute="centerY" id="gZe-wD-ntB"/>
+                            <constraint firstItem="rGu-df-wEy" firstAttribute="centerX" secondItem="nFh-X9-vLk" secondAttribute="centerX" id="gic-38-FzD"/>
+                            <constraint firstItem="3EZ-7t-pGN" firstAttribute="centerX" secondItem="rGu-df-wEy" secondAttribute="centerX" id="yS0-Ob-Zx4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="FB8-YP-Ork" kind="show" identifier="SplitVC" id="Yls-Ez-b1D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XAa-u1-QWM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="191" y="188"/>
+        </scene>
+        <!--SplitVC-->
+        <scene sceneID="Cxr-tm-BVA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="SplitVC" id="FB8-YP-Ork" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kkv-20-jvF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="846" y="139"/>
+        </scene>
+    </scenes>
+</document>

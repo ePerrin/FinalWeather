@@ -35,4 +35,17 @@ public class City: NSManagedObject {
         
         return nil
     }
+    
+    class func getCities(inContext context: NSManagedObjectContext) -> [City] {
+        let request: NSFetchRequest = City.fetchRequest()
+        
+        do {
+            let entities = try context.fetch(request)
+            return entities
+        } catch {
+            NSLog("Error just occured to get Cities")
+        }
+        
+        return []
+    }
 }
