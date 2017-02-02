@@ -30,7 +30,7 @@ public class Weather: NSManagedObject {
             , success: {
                 data in
                 
-                guard self.isAccessibilityElement else { return }
+                guard self.managedObjectContext != nil else { return }
                 
                 self.icon = data
                 self.isIconLoading = false
@@ -38,7 +38,7 @@ public class Weather: NSManagedObject {
             }, error: {
                 error in
                 
-                guard self.isAccessibilityElement else { return }
+                guard self.managedObjectContext != nil else { return }
                 
                 self.isIconLoading = false
                 

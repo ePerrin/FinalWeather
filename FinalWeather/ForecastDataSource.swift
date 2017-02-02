@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-// MARK: - CitizenHistoryDataProviderProtocol
+// MARK: - ForecastDataProviderProtocol
 
 @objc protocol ForecastDataProviderProtocol: class, UITableViewDataSource {
     var city: City! { get set }
@@ -20,7 +20,7 @@ import CoreData
     func timeWeather(at indexPath: IndexPath) -> TimeWeather
 }
 
-// MARK: - CitizenHistoryDataProvider main methods
+// MARK: - ForecastDataProvider main methods
 
 class ForecastDataProvider: NSObject, ForecastDataProviderProtocol {
     var city: City!

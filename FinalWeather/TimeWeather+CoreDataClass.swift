@@ -37,7 +37,10 @@ public class TimeWeather: NSManagedObject {
     }
     
     class func getMostCloser(forCity city: City, inContext context: NSManagedObjectContext) -> TimeWeather? {
-        let dateNow = NSDate()
+        var dateNow = NSDate()
+        
+        dateNow = dateNow.addingTimeInterval(-1.5 * 3600) // 1h30 from now
+        
         let request: NSFetchRequest = TimeWeather.fetchRequest()
         request.predicate = NSPredicate(format:"\(TimeWeather.date) > %@ AND \(TimeWeather.city) = %@", dateNow, city)
         request.sortDescriptors = [NSSortDescriptor(key: TimeWeather.date, ascending: true)]
@@ -56,9 +59,9 @@ public class TimeWeather: NSManagedObject {
     }
     
     class func requestGetForecast(forCity city: City) -> NSFetchRequest<TimeWeather> {
-        let dateNow = NSDate()
+        var dateNow = NSDate()
         
-        dateNow.addingTimeInterval(-12 * 3600) // 2 hours from now
+        dateNow = dateNow.addingTimeInterval(-1.5 * 3600) // 1h30 hours from now
         
         let request: NSFetchRequest = TimeWeather.fetchRequest()
         request.predicate = NSPredicate(format:"\(TimeWeather.date) > %@ AND \(TimeWeather.city) = %@", dateNow, city)
