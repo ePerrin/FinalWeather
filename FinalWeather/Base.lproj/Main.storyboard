@@ -240,7 +240,13 @@
                             <outlet property="delegate" destination="GLq-ZW-2xw" id="754-eR-qsw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ngC-w3-PEa"/>
+                    <navigationItem key="navigationItem" id="ngC-w3-PEa">
+                        <barButtonItem key="rightBarButtonItem" title="Cities" id="4qd-c7-4EK">
+                            <connections>
+                                <action selector="tapOnCitiesBarButtonItem:" destination="GLq-ZW-2xw" id="vYW-2h-hJe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cloudinessLabel" destination="JUv-Mf-pqH" id="9vI-KH-K3d"/>
                         <outlet property="dateLabel" destination="dyu-so-TpI" id="m0W-0S-Muu"/>

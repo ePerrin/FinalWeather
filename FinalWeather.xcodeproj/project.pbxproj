@@ -10,6 +10,7 @@
 		1054DBF04F7C59013E80E14D /* Pods_FinalWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D64ED96FB63CFA94A908DC8 /* Pods_FinalWeather.framework */; };
 		1B82744A91B509AA3D39792C /* Pods_FinalWeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2A9124BF01D9FA829F4491 /* Pods_FinalWeatherTests.framework */; };
 		5B3C19071E42A40700E75CBF /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C19061E42A40700E75CBF /* Image.swift */; };
+		5B3C19091E439A3A00E75CBF /* CitiesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3C19081E439A3A00E75CBF /* CitiesDataSource.swift */; };
 		5B9E17591E41D88D0033C98B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9E17581E41D88D0033C98B /* AppDelegate.swift */; };
 		5B9E175E1E41D88D0033C98B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B9E175C1E41D88D0033C98B /* Main.storyboard */; };
 		5B9E17611E41D88D0033C98B /* FinalWeather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B9E175F1E41D88D0033C98B /* FinalWeather.xcdatamodeld */; };
@@ -66,6 +67,7 @@
 		3F0E5DF6007DAAE1A469C7C8 /* Pods-FinalWeatherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalWeatherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalWeatherUITests/Pods-FinalWeatherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		52581141A5D9D78AB5C0E43F /* Pods-FinalWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalWeather.release.xcconfig"; path = "Pods/Target Support Files/Pods-FinalWeather/Pods-FinalWeather.release.xcconfig"; sourceTree = "<group>"; };
 		5B3C19061E42A40700E75CBF /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		5B3C19081E439A3A00E75CBF /* CitiesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesDataSource.swift; sourceTree = "<group>"; };
 		5B9E17551E41D88D0033C98B /* FinalWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B9E17581E41D88D0033C98B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B9E175D1E41D88D0033C98B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			children = (
 				5B9E17D81E42971B0033C98B /* Cities.storyboard */,
 				5B9E17DA1E42977D0033C98B /* CitiesTableViewController.swift */,
+				5B3C19081E439A3A00E75CBF /* CitiesDataSource.swift */,
 			);
 			name = Cities;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				5B9E17A01E41E87B0033C98B /* City+CoreDataProperties.swift in Sources */,
 				5B9E17D01E424A420033C98B /* Localizable.swift in Sources */,
 				5B9E17A51E41E8CD0033C98B /* TimeWeather+CoreDataClass.swift in Sources */,
+				5B3C19091E439A3A00E75CBF /* CitiesDataSource.swift in Sources */,
 				5B9E179F1E41E87B0033C98B /* City+CoreDataClass.swift in Sources */,
 				5B9E17B31E41FB340033C98B /* City+Mapping.swift in Sources */,
 				5B9E17B51E4203120033C98B /* Weather+Mapping.swift in Sources */,
@@ -833,6 +837,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A7E694BF37EE89B5696948F6 /* Pods-FinalWeather.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FinalWeather/Info.plist;
@@ -848,6 +853,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 52581141A5D9D78AB5C0E43F /* Pods-FinalWeather.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FinalWeather/Info.plist;

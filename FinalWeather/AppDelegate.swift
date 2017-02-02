@@ -30,10 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Intantiate first controller
-        let citiesTVC = UIStoryboard(name: Project.storyboadCities, bundle: Bundle.main).instantiateInitialViewController() as! CitiesTableViewController
-        citiesTVC.context = self.mainManagedObjectContext
+        let context = self.mainManagedObjectContext
+        let dataProvider = CitiesDataProvider()
+        dataProvider.context = context
         
-        self.window!.rootViewController = citiesTVC
+        let citiesNVC = UIStoryboard(name: Project.storyboadCities, bundle: Bundle.main).instantiateInitialViewController() as! UINavigationController
+        let citiesTVC = citiesNVC.topViewController as! CitiesTableViewController
+        citiesTVC.context = context
+        citiesTVC.citiesDataProviderProtocol = dataProvider
+        
+        self.window!.rootViewController = citiesNVC
         
         return true
     }

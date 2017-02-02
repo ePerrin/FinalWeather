@@ -8,30 +8,89 @@
 
 import UIKit
 import CoreData
+import AFNetworking
 
-// IMPORTANT: If I have time, I will transform this controller inton a UITableViewController and let user the possibility to add other cities than Lyon in the app
-class CitiesTableViewController: UIViewController {
+class CitiesTableViewController: UITableViewController {
     
+    var citiesDataProviderProtocol: CitiesDataProviderProtocol!
     var context: NSManagedObjectContext!
     
     fileprivate let segueSplitVC = "SplitVC"
     
+    fileprivate weak var phoneAlertTextField: UITextField?
+    
     
     // MARK: UIViewController
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        // finish to implement dataProvider
+        self.tableView.dataSource = self.citiesDataProviderProtocol
+        self.citiesDataProviderProtocol.tableView = self.tableView
+        
+        // add Lyon if no city
         let cities = City.getCities(inContext: self.context)
+        if cities.count == 0 {
+            self.addCity(withName: "lyon,fr")
+        }
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let city = self.citiesDataProviderProtocol.city(at: indexPath)
         
-        // if a city exist and a timeWeather, perform segue
-        if let city = cities.first, let timeWeather = TimeWeather.getMostCloser(forCity: city, inContext: self.context) {
-            self.performSegue(withIdentifier: self.segueSplitVC, sender: [city, timeWeather])
+        guard let timeWeather = TimeWeather.getMostCloser(forCity: city, inContext: self.context) else {
             return
         }
         
-        // get data otherwise
-        self.loadData()
+        self.performSegue(withIdentifier: self.segueSplitVC, sender: [city, timeWeather])
+    }
+    
+    // MARK: Action
+    
+    @IBAction func tapOnAddCityBarButtonItem(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: Localizable.AddCityAlertCitiesTVC.value(), message: nil, preferredStyle: .alert)
+        alert.addAction(
+            UIAlertAction(
+                title: Localizable.TextCancel.value(),
+                style: .cancel,
+                handler: {
+                    action in
+                    
+                }
+            )
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: Localizable.TextOk.value(),
+                style: .default,
+                handler: {
+                    action in
+                    
+                    guard let text = self.phoneAlertTextField?.text else {
+                        return
+                    }
+                    
+                    self.addCity(withName: text)
+                }
+            )
+        )
+        alert.addTextField {
+            textField in
+            
+            textField.keyboardType = .default
+            textField.becomeFirstResponder()
+            
+            self.phoneAlertTextField = textField
+        }
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: Navigation
@@ -64,21 +123,37 @@ class CitiesTableViewController: UIViewController {
     
     // MARK: Support
     
-    fileprivate func loadData() {
-        let lyon = "lyon,fr"
-        APIManager.sharedInstance().getCurrentWeather(forCityName: lyon, inContext: self.context
+    fileprivate func addCity(withName name: String) {
+        APIManager.sharedInstance().getCurrentWeather(forCityName: name, inContext: self.context
             , success: {
                 city in
                 
-                if let timeWeathers = city.timeWeathers as? Set<TimeWeather>, let timeWeather = timeWeathers.first {
-                    self.performSegue(withIdentifier: self.segueSplitVC, sender: [city, timeWeather])
-                }
                 
             }, error: {
                 error in
                 
-                
+                if let responseError = error?.userInfo[AFNetworkingOperationFailingURLResponseErrorKey], let statusCode = (responseError as AnyObject).statusCode { // AFNetworkingOperationFailingURLResponseErrorKey SHOULD NOT BE MANGED HERE IN CONTROLLER, BUT IN APIMANAGER
+                    if statusCode == 404 || statusCode == 502 { // API retrun 502 some times when city is not found
+                        let alert = UIAlertController(title: Localizable.NotFoundAlertCitiesTVC.value(), message: nil, preferredStyle: .alert)
+                        
+                        alert.addAction(
+                            UIAlertAction(
+                                title: Localizable.TextOk.value(),
+                                style: .cancel,
+                                handler:nil
+                            )
+                        )
+                        
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
             }
         )
+        APIManager.sharedInstance().getForecastWeather(forCityName: name, inContext: self.context
+            , success: {
+                
+            }, error: {
+                error in
+        })
     }
 }

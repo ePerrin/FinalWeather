@@ -12,6 +12,18 @@ import Foundation
 
 enum Localizable: String {
     
+    // MARK: General
+    
+    case TextOk = "TextOk"
+    case TextCancel = "TextCancel"
+    
+    // MARK: CitiesTableViewController
+    
+    case AddCityAlertCitiesTVC = "AddCityAlertCitiesTVC"
+    case NotFoundAlertCitiesTVC = "NotFoundAlertCitiesTVC"
+    
+    // MARK: TimeWeatherTableViewController
+    
     case NoDataTimeWeatherTVC = "NoDataTimeWeatherTVC"
     
     // MARK: Method to access localizable string

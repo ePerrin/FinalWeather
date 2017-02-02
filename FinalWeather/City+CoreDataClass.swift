@@ -36,6 +36,13 @@ public class City: NSManagedObject {
         return nil
     }
     
+    class func requestCities() -> NSFetchRequest<City> {
+        let request: NSFetchRequest = City.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: City.name, ascending: true)]
+        
+        return request
+    }
+    
     class func getCities(inContext context: NSManagedObjectContext) -> [City] {
         let request: NSFetchRequest = City.fetchRequest()
         

@@ -46,6 +46,13 @@ class TimeWeatherTableViewController: UITableViewController {
         self.refreshUI()
     }
     
+    // MARK: Action
+    
+    @IBAction func tapOnCitiesBarButtonItem(_ sender: UIBarButtonItem) {
+        self.splitViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    
     // MARK: Notification
     
     @objc func contextDidChange(_ notification: Foundation.Notification) {

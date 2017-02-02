@@ -67,7 +67,15 @@ class ForecastTableViewController: UITableViewController {
     
     fileprivate func loadData() {
         guard let cityName = self.city.name else { return }
-        
+        APIManager.sharedInstance().getCurrentWeather(forCityName: cityName, inContext: self.context
+            , success: {
+                city in
+            }, error: {
+                error in
+                
+                
+            }
+        )
         APIManager.sharedInstance().getForecastWeather(forCityName: cityName, inContext: self.context
             , success: {
                 // No need to do action, NSFetchedResultsController will manage data
