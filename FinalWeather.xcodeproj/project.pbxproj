@@ -280,19 +280,19 @@
 		5B9E17BE1E42403F0033C98B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5B9E17BF1E4240510033C98B /* Launch */,
+				5B9E17BF1E4240510033C98B /* LaunchScreen */,
 				5B9E17D71E4296F40033C98B /* Cities */,
 				5B9E17C11E4241820033C98B /* Main */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		5B9E17BF1E4240510033C98B /* Launch */ = {
+		5B9E17BF1E4240510033C98B /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
 				5B9E17641E41D88D0033C98B /* LaunchScreen.storyboard */,
 			);
-			name = Launch;
+			name = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		5B9E17C01E4240630033C98B /* View */ = {
@@ -442,7 +442,6 @@
 				TargetAttributes = {
 					5B9E17541E41D88D0033C98B = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 5823KL948Z;
 						ProvisioningStyle = Automatic;
 					};
 					5B9E176B1E41D88D0033C98B = {
@@ -835,7 +834,7 @@
 			baseConfigurationReference = A7E694BF37EE89B5696948F6 /* Pods-FinalWeather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5823KL948Z;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FinalWeather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -850,7 +849,7 @@
 			baseConfigurationReference = 52581141A5D9D78AB5C0E43F /* Pods-FinalWeather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5823KL948Z;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FinalWeather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

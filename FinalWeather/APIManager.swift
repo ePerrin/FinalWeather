@@ -15,9 +15,13 @@ import AFNetworking
 
 struct API {
     static let key = "d66fe97e862eb08a0a452cb25055c455"
-    static let url = "http://api.openweathermap.org/data/2.5"
+    static let url = "http://api.openweathermap.org"
     static let unitMetric = "metric"
     
+    static let pathImage = "img"
+    static let pathW = "w"
+    static let pathData = "data"
+    static let pathVersion = "2.5"
     static let pathCurrent = "weather"
     static let pathForecast = "forecast"
     static let pathDaily = "daily"
@@ -69,7 +73,6 @@ class APIManager: NSObject {
         let manager = AFHTTPSessionManager(baseURL: URL(string: API.url))
         
         manager.requestSerializer = AFHTTPRequestSerializer()
-        manager.responseSerializer = AFJSONResponseSerializer()
         
         self.manager = manager
     }
@@ -83,6 +86,9 @@ class APIManager: NSObject {
     func GET(_ URLString: String, parameters: [String: Any]?, success: (@escaping (URLSessionDataTask, JSON?) -> Void), failure: (@escaping (URLSessionDataTask?, NSError) -> Void)) -> URLSessionDataTask? {
         // Prepare request
         let manager = self.manager
+        
+        manager.responseSerializer = AFJSONResponseSerializer()
+        
         var parametersFinal: [String: Any] = [:]
         
         if let parameters = parameters {
@@ -99,7 +105,38 @@ class APIManager: NSObject {
         return manager.get(URLString, parameters: parametersFinal, progress: nil, success: self.manageSuccess(success), failure: self.manageFailure(failure))
     }
     
+    func dataTask(with pathString: String, completionHandler handler: ((URLResponse, Any?, Error?) -> Void)?) -> URLSessionDataTask? {
+        guard let url = URL(string: "\(API.url)/\(pathString)") else {
+            return nil
+        }
+        
+        let manager = self.manager
+        
+        manager.responseSerializer = AFHTTPResponseSerializer()
+        manager.responseSerializer.acceptableContentTypes = ["image/png", "image/jpeg"]
+        
+        let request = URLRequest(url: url)
+        
+        // Request will be launched
+        self.willRequestLaunched()
+        
+        let dataTask = manager.dataTask(with: request, completionHandler: self.manage(handler))
+        dataTask.resume()
+        
+        return dataTask
+    }
+    
     // MARK: Support
+    
+    fileprivate func manage(_ bloc: ((URLResponse, Any?, Error?) -> Void)?) -> ((URLResponse, Any?, Error?) -> Void)? {
+        return {
+            response, result, error in
+            
+            self.didRequestComplete()
+            
+            bloc?(response, result, error)
+        }
+    }
     
     fileprivate func manageSuccess(_ bloc: (@escaping (URLSessionDataTask, JSON?) -> Void)) -> ((URLSessionDataTask, Any?) -> Void)? {
         return {

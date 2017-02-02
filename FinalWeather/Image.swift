@@ -22,6 +22,8 @@ enum Image: String {
 
 extension Weather {
     var iconUI: UIImage? {
+        self.loadIconIfNeeded()
+        
         if let imageData = self.icon {
             return UIImage(data: imageData as Data)
         } else {

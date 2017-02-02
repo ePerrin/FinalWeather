@@ -14,8 +14,36 @@ public class Weather: NSManagedObject {
     
     // MARK: Utilities
     
+    fileprivate var isIconLoading = false
+    
     class func insertNewEntityInContext(_ context: NSManagedObjectContext) -> Weather {
         return NSEntityDescription.insertNewObject(forEntityName: "Weather", into: context) as! Weather
+    }
+    
+    func loadIconIfNeeded() {
+        guard let iconName = self.iconName, self.icon == nil && !self.isIconLoading else {
+            return
+        }
+        
+        self.isIconLoading = true
+        APIManager.sharedInstance().getImage(forIconName: iconName
+            , success: {
+                data in
+                
+                guard self.isAccessibilityElement else { return }
+                
+                self.icon = data
+                self.isIconLoading = false
+                
+            }, error: {
+                error in
+                
+                guard self.isAccessibilityElement else { return }
+                
+                self.isIconLoading = false
+                
+        })
+        
     }
     
     // MARK: Query

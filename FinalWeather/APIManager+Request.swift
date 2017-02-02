@@ -13,7 +13,7 @@ import SwiftyJSON
 extension APIManager {
     func getCurrentWeather(forCityName name: String, inContext context: NSManagedObjectContext, success: @escaping (City)->(), error: @escaping (NSError?) -> ()) {
         
-        _ = self.GET("\(API.pathCurrent)", parameters: [API.parameterCityName: name]
+        _ = self.GET("\(API.pathData)/\(API.pathVersion)/\(API.pathCurrent)", parameters: [API.parameterCityName: name]
             , success: { session, result in
                 guard let resultJson = result, let city = City.completeFromJSON(resultJson, inContext: context) else {
                     error(nil)
@@ -37,7 +37,7 @@ extension APIManager {
     
     func getForecastWeather(forCityName name: String, inContext context: NSManagedObjectContext, success: @escaping ()->(), error: @escaping (NSError?) -> ()) {
         
-        _ = self.GET("\(API.pathForecast)", parameters: [API.parameterCityName: name]
+        _ = self.GET("\(API.pathData)/\(API.pathVersion)/\(API.pathForecast)", parameters: [API.parameterCityName: name]
             , success: { session, result in
                 guard let resultJson = result, let listJson = resultJson[API.resList].array, let city = City.completeFromJSON(resultJson[API.resCity], inContext: context), listJson.count > 0 else {
                     error(nil)
@@ -56,8 +56,22 @@ extension APIManager {
                 
                 success()
                 
-        }, failure: { session, errorP in
-            error(errorP)
+            }, failure: { session, errorP in
+                error(errorP)
+        })
+    }
+    
+    func getImage(forIconName iconName: String, success: @escaping (NSData)->(), error: @escaping (NSError?) -> ()) {
+        _ = self.dataTask(with: "\(API.pathImage)/\(API.pathW)/\(iconName).png"
+            , completionHandler: {
+                response, data, errorP in
+                
+                guard let dataNotNil = data as? NSData, errorP == nil else {
+                    error(errorP as NSError?)
+                    return
+                }
+                
+                success(dataNotNil)
         })
     }
 }

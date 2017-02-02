@@ -42,6 +42,7 @@ extension Weather {
         
         // iconName value
         if let value = json[API.resIcon].string {
+            entity.loadIconIfNeeded()
             entity.iconName = value
         }
         

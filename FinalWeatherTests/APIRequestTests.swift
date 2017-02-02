@@ -81,7 +81,6 @@ class APIRequestTests: XCTestCase {
                 XCTAssertNotNil(timeWeather?.pressure, "pressure should be not nil")
                 XCTAssertNotNil(timeWeather?.humidity, "humidity should be not nil")
                 XCTAssertNotNil(timeWeather?.windSpeed, "windSpeed should be not nil")
-                XCTAssertNotNil(timeWeather?.windDeg, "windDeg should be not nil")
                 XCTAssertNotNil(timeWeather?.sunrise, "sunrise should be not nil")
                 XCTAssertNotNil(timeWeather?.sunset, "sunset should be not nil")
                 
@@ -138,7 +137,6 @@ class APIRequestTests: XCTestCase {
                     XCTAssertNotNil(timeWeather.pressure, "pressure should be not nil")
                     XCTAssertNotNil(timeWeather.humidity, "humidity should be not nil")
                     XCTAssertNotNil(timeWeather.windSpeed, "windSpeed should be not nil")
-                    XCTAssertNotNil(timeWeather.windDeg, "windDeg should be not nil")
                 }
                 
                 // weather tests
